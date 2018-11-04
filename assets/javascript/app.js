@@ -1,59 +1,123 @@
 //pseudo code for trivia game
 //need array of multiple questions/answers
-var quizQuestion = [    
-    {
-    text: "question text",
-    choices: ["top", "bottom", "flex"],
-    answer: "top"
-},
-    {
-    text: "question text",
-    choices: ["wrong", "correct", "close but no cigar"],
-    answer: "correct"
-},
+// var quizQuestion = [    
+//     {
+//     text: "question text",
+//     choices: ["top", "bottom", "flex"],
+//     answer: "top"
+// },
+//     {
+//     text: "question text",
+//     choices: ["wrong", "correct", "close but no cigar"],
+//     answer: "correct"
+// },
 
-    {
-    text: "question text",
-    choices: ["choice1", "chocie2", "choice3"],
-    answer: "choice3"
-}
-]
+//     {
+//     text: "question text",
+//     choices: ["choice1", "chocie2", "choice3"],
+//     answer: "choice3"
+// }
+// ]
+var correct = 0;
+var incorrect = 0;
+var questionIndex = 0;
 
-var quizQuestions2 = [
-    {
-        question: "What is the velocity of an unladen swallow?",
-        answers: [
-            {
-                text: "I don't know",
-                correct: false
-            },
-            {
-                text: "African or Europena?",
-                correct: true
-            }
-        ]
+var quizQuestions2 = [{
+    question: "What is the velocity of an unladen swallow?",
+    answers: [{
+            text: "I don't know",
+            correct: false
+        },
+        {
+            text: "African or Europena?",
+            correct: true
+        }
+    ]
+}, {
+    question: "What time is it now?",
+    answers: [{
+            text: "10:00am",
+            correct: false
+        },
+        {
+            text: "almost 11am",
+            correct: true
+        }
+    ]
+}];
+
+
+var displayQuestion = function (questionObj) {
+    $("#question").text(questionObj.question);
+    // $("#incorrect").text(quizQuestions2[0].answers[0].text);
+    // $("#correct").text(quizQuestions2[0].answers[1].text);
+    // console.log(quizQuestions2[0].answers[1].correct);
+    var quizQuestions = questionObj.answers;
+    $("#first-Question").empty();
+    for (var i = 0; i < quizQuestions.length; i++) {
+        var answerButton = $("<button>");
+        answerButton.text(quizQuestions[i].text);
+        answerButton.attr("data-correct", quizQuestions[i].correct);
+        answerButton.attr("class", "answer");
+        $("#first-Question").append(answerButton);
     }
-]
 
+};
 
-<div id="questionHolder">
-    <p>What is the velocity of an unladen swallow?</p>
-    <div>
-        <button class="answer" data-correct="false">I don't know</button>
-        <button class="answer" data-correct="true">African or European?</button>
-    </div>
-</div>
-
-$("#questionHolder").on("click", ".answer", function(){
-    //check and see if answer is correct
-    if ($(this).attr("data-correct") ==="true" ){
-        huzzah you win!
-    } else you lose and go to next question
+$("#play-game").on("click", function () {
+    displayQuestion(quizQuestions2[questionIndex++])
 })
 
-//displayQuestion();
+$("#test").on("click", ".answer", function () {
 
-i = 0
+    if ($(this).attr("data-correct") === "true") {
+        console.log("correct!");
+        correct++;
+        if (questionIndex === quizQuestions2.length) {
+            console.log("Show Results");
+        } else {
+            displayQuestion(quizQuestions2[questionIndex++])
+        }
+    } else {
+        console.log("incorrect");
+        incorrect++;
+        if (questionIndex === quizQuestions2.length) {
+            console.log("Show Results");
+        } else {
+            displayQuestion(quizQuestions2[questionIndex++]);
+        }
+    }
+});
+
+
+
+
+
+
+
+
+//Erik's comments to try and point me in right direction
+// <div id="questionHolder">
+//      <p>What is the velocity of an unladen swallow?</p>
+// <div>
+//     <button class="answer" data-correct="false">I don't know</button>
+//     <button class="answer" data-correct="true">African or European?</button>
+// </div>
+// </div>
+
+
+
+
+// $("#questionHolder").on("click", ".answer", function(){
+//     //check and see if answer is correct
+//     if ($(this).attr("data-correct") === "true" ){
+//         console.log("correct!")
+//     } else {
+//         console.log("wrong!")
+//     }
+// });
+
+//i = 0
 
 
 
@@ -79,7 +143,7 @@ i = 0
 // }); i++
 // }
 
-$("#play-game").on("click", displayQuestion)
+//$("#play-game").on("click", displayQuestion)
 
 // $(".btn-lrg").on("click", function(){
 //     displayQuestion()
