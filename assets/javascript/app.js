@@ -51,20 +51,28 @@ var quizQuestions2 = [{
 
 function timer(){
     intervalID = setInterval(countdown, 1000)
-}
+};
+
 function countdown(){
     time--;
-    $("#time-display").text(time);
+    $("#time-display").text("Time left: " + time);
     if (time === 0){
         stop();
         console.log("Time's up!");
     }
-}
-function stop(){
-    clearInterval(intervalID)
-}
+};
 
-timer();
+function stop() {
+    clearInterval(intervalID)
+};
+
+function reset(){
+    clearInterval(intervalID);
+    time = 30;
+    timer();
+};
+
+//timer();
 
 var displayQuestion = function (questionObj) {
     $("#question").text(questionObj.question);
@@ -84,7 +92,9 @@ var displayQuestion = function (questionObj) {
 };
 
 $("#play-game").on("click", function () {
-    displayQuestion(quizQuestions2[questionIndex++])
+    $(this).hide();
+    displayQuestion(quizQuestions2[questionIndex++]);
+    timer();
 })
 
 $("#test").on("click", ".answer", function () {
@@ -96,14 +106,17 @@ $("#test").on("click", ".answer", function () {
             console.log("Show Results");
         } else {
             displayQuestion(quizQuestions2[questionIndex++])
+            reset();
         }
     } else {
         console.log("incorrect");
         incorrect++;
         if (questionIndex === quizQuestions2.length) {
             console.log("Show Results");
+            stop();
         } else {
             displayQuestion(quizQuestions2[questionIndex++]);
+            reset();
         }
     }
 });
