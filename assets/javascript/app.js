@@ -21,6 +21,9 @@
 var correct = 0;
 var incorrect = 0;
 var questionIndex = 0;
+var time = 30;
+var intervalID;
+
 
 var quizQuestions2 = [{
     question: "What is the velocity of an unladen swallow?",
@@ -46,6 +49,22 @@ var quizQuestions2 = [{
     ]
 }];
 
+function timer(){
+    intervalID = setInterval(countdown, 1000)
+}
+function countdown(){
+    time--;
+    $("#time-display").text(time);
+    if (time === 0){
+        stop();
+        console.log("Time's up!");
+    }
+}
+function stop(){
+    clearInterval(intervalID)
+}
+
+timer();
 
 var displayQuestion = function (questionObj) {
     $("#question").text(questionObj.question);
