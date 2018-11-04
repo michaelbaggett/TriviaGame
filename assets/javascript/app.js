@@ -86,6 +86,7 @@ var displayQuestion = function (questionObj) {
         answerButton.text(quizQuestions[i].text);
         answerButton.attr("data-correct", quizQuestions[i].correct);
         answerButton.attr("class", "answer");
+        answerButton.attr("class", "btn btn-outline-dark btn-block")
         $("#first-Question").append(answerButton);
     }
 
