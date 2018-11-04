@@ -1,0 +1,33 @@
+#head {
+    width: 100%;
+    margin-top: 10px;
+    color: red;
+    text-align: center;
+
+}
+
+#time-display {
+    font-size: 2rem;
+    text-align: center;
+}
+
+#play-game {
+    margin: auto;
+    display: block;
+}
+#question{
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+.answer {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+
+}
+
+.show-results{
+    text-align: center;
+    font-size: 2rem;
+}

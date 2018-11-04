@@ -49,14 +49,14 @@ var quizQuestions2 = [{
     ]
 }];
 
-function timer(){
+function timer() {
     intervalID = setInterval(countdown, 1000)
 };
 
-function countdown(){
+function countdown() {
     time--;
     $("#time-display").text("Time left: " + time);
-    if (time === 0){
+    if (time === 0) {
         stop();
         console.log("Time's up!");
     }
@@ -66,7 +66,7 @@ function stop() {
     clearInterval(intervalID)
 };
 
-function reset(){
+function reset() {
     clearInterval(intervalID);
     time = 30;
     timer();
@@ -103,7 +103,11 @@ $("#test").on("click", ".answer", function () {
         console.log("correct!");
         correct++;
         if (questionIndex === quizQuestions2.length) {
-            console.log("Show Results");
+            $("#question").text("Well done!");
+            $("#first-Question").empty();
+            $("#results-correct").append("<p>").text("Correct Answers: " + correct);
+            $("#results-incorrect").append("<p>").text("Incorrect Answers: " + incorrect);
+            stop();
         } else {
             displayQuestion(quizQuestions2[questionIndex++])
             reset();
@@ -112,7 +116,10 @@ $("#test").on("click", ".answer", function () {
         console.log("incorrect");
         incorrect++;
         if (questionIndex === quizQuestions2.length) {
-            console.log("Show Results");
+            $("#question").text("You gave it a shot!")
+            $("#first-Question").empty();
+            $("#results-correct").append("<p>").text("Correct Answers: " + correct);
+            $("#results-incorrect").append("<p>").text("Incorrect Answers: " + incorrect);
             stop();
         } else {
             displayQuestion(quizQuestions2[questionIndex++]);
