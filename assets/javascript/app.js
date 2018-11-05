@@ -4,66 +4,124 @@
 var correct = 0;
 var incorrect = 0;
 var questionIndex = 0;
-var time = 10;
+var time = 25;
 var intervalID;
 
 
 var quizQuestions2 = [{
-    question: "What is the velocity of an unladen swallow?",
-    answers: [{
-            text: "I don't know",
-            correct: false
-        },
-        {
-            text: "African or Europena?",
-            correct: true
-        }
-    ]
-}, {
-    question: "What time is it now?",
-    answers: [{
-            text: "10:00am",
-            correct: false
-        },
-        {
-            text: "almost 11am",
-            correct: true
-        }
-    ]
-}, {
-    question: "abbva?",
-    answers: [{
-            text: "12345",
-            correct: false
-        },
-        {
-            text: "67890",
-            correct: true
-        }
-    ]
-}, {
-    question: "Who let the dogs out?",
-    answers: [{
-            text: "Who",
-            correct: true
-        },
-        {
-            text: "jeff",
-            correct: false
-        }
-    ]
-
-}, {
-    question: "what is the best squat",
-    answers: [{
-        text: "overhead",
+question: "In 1930, Bobby Jones won all 4 major tournaments held in the calendar year. What is this accomplisment called?",
+answers: [{
+        text: "The Jones Slam",
         correct: false
     },
     {
-        text: "back",
+        text: "The Grand Slam",
         correct: true
-    }]
-
+    },
+    {
+        text: "The Ryder Cup",
+        answer: false
+    },
+    {
+        text: "None of the above",
+        correct: false
+    },
+]
+}, {
+question: "The 2000 US Open, held at Pebble Beach Golf Links, was won by Tiger Woods in record setting fasion. He won the tournament by this many strokes, to this day the largest margin of victory in any Major Tournament.",
+answers: [{
+        text: "5",
+        correct: false
+    },
+    {
+        text: "9",
+        correct: true
+    },
+    {
+        text: "15",
+        correct: true
+    },
+    {
+        text: "22",
+        correct: false
+    }
+]
+}, {
+question: "Holes 11, 12, and 13 at Augusta National Golf Club are famously known as what?",
+answers: [{
+        text: "Amen Corner",
+        correct: true
+    },
+    {
+        text: "Hot Corner",
+        correct: false
+    },
+    {
+        text: "Coffin-Corner",
+        correct: false
+    },
+    {
+        text: "The Turn",
+        correct: false
+    }
+]
+}, {
+question: "Tiger Woods just recently won his 80th career golf Tournament. He is 2 wins shy of the all-time record currently held by who?",
+answers: [{
+        text: "Sam Snead",
+        correct: true
+    },
+    {
+        text: "Jack Nickalus",
+        correct: false
+    },
+    {
+        text: "Arnold Palmer",
+        correct: false
+    },
+    {
+        text: "Ben Hogan",
+        correct: false
+    }
+]
+}, {
+question: "A regulation golfball has how many dimples?",
+answers: [{
+        text: "100",
+        correct: false
+    },
+    {
+        text: "515",
+        correct: false
+    },
+    {
+        text: "421",
+        correct: false
+    },
+    {
+        text: "339",
+        correct: true
+    }
+]
+}, {
+question: "The cathedral of golf is located in Scotland and is consiered the oldest course in the world. What course do many call the Home of Golf?",
+answers: [{
+        text: "Muirfield",
+        correct: false
+    },
+    {
+        text: "Old Course at St. Andrews",
+        correct: true
+    },
+    {
+        text: "Pinehurst No. 2",
+        answer: false
+    },
+    {
+        text: "Shinnecock Hills",
+        correct: false
+    },
+]
 }];
 
 function timer() {
@@ -86,7 +144,7 @@ function stop() {
 
 function reset() {
     clearInterval(intervalID);
-    time = 10;
+    time = 25;
     timer();
 };
 
@@ -101,7 +159,7 @@ var displayQuestion = function (questionObj) {
         var answerButton = $("<button>");
         answerButton.text(quizQuestions[i].text);
         answerButton.attr("data-correct", quizQuestions[i].correct);
-        answerButton.attr("class", "answer btn btn-outline-dark btn-block")
+        answerButton.attr("class", "answer btn btn-outline-warning btn-block")
         $("#first-Question").append(answerButton);
     }
 
