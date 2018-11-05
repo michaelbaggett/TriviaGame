@@ -22,7 +22,7 @@ html, body{
     font-weight: bolder;
 }
 
-#play-game {
+#play-game, #restart {
     margin: auto;
     display: block;
 }

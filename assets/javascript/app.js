@@ -6,7 +6,9 @@ var incorrect = 0;
 var questionIndex = 0;
 var time = 25;
 var intervalID;
+var unAnswered = 0;
 
+$("#restart").hide();
 
 var quizQuestions2 = [{
 question: "In 1930, Bobby Jones won all 4 major tournaments held in the calendar year. What is this accomplisment called?",
@@ -132,9 +134,12 @@ function countdown() {
     time--;
     $("#time-display").text("Time left: " + time);
     if (time === 0) {
+        unAnswered++;
+        console.log(unAnswered);
         stop();
         $("#time-display").text("Time's up!");
-        //displayQuestion(quizQuestions2[questionIndex++])
+        displayQuestion(quizQuestions2[questionIndex++]);
+        reset();
     }
 };
 
@@ -147,6 +152,9 @@ function reset() {
     time = 25;
     timer();
 };
+
+//need a show results function if user doen't answer final question
+//MAKE A BUFFER FUNCTION THAT DISPLAYS A GIF FIGURE OUT WHERE TO RUN IT
 
 var displayQuestion = function (questionObj) {
     $("#question").text(questionObj.question);
@@ -171,6 +179,17 @@ $("#play-game").on("click", function () {
     timer();
 });
 
+$("#restart").on("click", function() {
+    $(this).hide();
+    questionIndex = 0;
+    correct = 0;
+    incorrect = 0;
+    unAnswered = 0;
+    $("#results-correct").empty();
+    $("#results-incorrect").empty();
+    displayQuestion(quizQuestions2[questionIndex++]);
+});
+
 $("#test").on("click", ".answer", function () {
 
     if ($(this).attr("data-correct") === "true") {
@@ -182,6 +201,7 @@ $("#test").on("click", ".answer", function () {
             $("#results-correct").append("<p>").text("Correct Answers: " + correct);
             $("#results-incorrect").append("<p>").text("Incorrect Answers: " + incorrect);
             stop();
+            $("#restart").show();
         } else {
             displayQuestion(quizQuestions2[questionIndex++])
             reset();
@@ -195,6 +215,7 @@ $("#test").on("click", ".answer", function () {
             $("#results-correct").append("<p>").text("Correct Answers: " + correct);
             $("#results-incorrect").append("<p>").text("Incorrect Answers: " + incorrect);
             stop();
+            $("#restart").show();
         } else {
             displayQuestion(quizQuestions2[questionIndex++]);
             reset();
